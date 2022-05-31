@@ -1,0 +1,17 @@
+{% extends 'admin_panel/main.html' %}
+
+{% block body %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Add</button>
+</form>
+
+{% if img_obj %}
+    <h3>Successfully Submit data: {{ img_obj.title }}</h3>
+    <img src="{{ img_obj.image.url }}" alt="">
+{% endif %}
+
+{% endblock %}

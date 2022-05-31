@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+
+  <!-- Bootstrap 4 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <script src="{% static 'js/main.js' %}"></script>
+</head>
+<body class="w3-blue">
+    <div class="w3-container">
+        <div class="w3-center" style="margin-left: 200px;">
+            <div class="w3-card-4 w3-light-gray w3-text-blue w3-padding" style="width: 50%;margin-left: 200px;">
+                <h1>Student Registration Form</h1>
+                <form method="post" action="#">
+                    {% csrf_token %}
+                    <div class="w3-row w3-section">
+                        <div class="w3-rest">
+                            <label class="w3-col s3">Full Name:</label>
+                            <div class="w3-col s9">
+                                <input class="w3-input w3-border" name="name" type="text" placeholder="Full Name..." required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-row w3-section">
+                        <div class="w3-rest">
+                            <label class="w3-col s3">Email:</label>
+                            <div class="w3-col s9">
+                                <input class="w3-input w3-border" name="email" type="email" placeholder="Email..." required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-row w3-section">
+                        <div class="w3-rest">
+                            <label class="w3-col s3">Mobile No:</label>
+                            <div class="w3-col s9">
+                                <input class="w3-input w3-border" name="mobile" type="text" placeholder="Mobile No..." required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-row w3-section">
+                        <div class="w3-rest">
+                            <label class="w3-col s3">Username:</label>
+                            <div class="w3-col s9">
+                                <input class="w3-input w3-border" name="username" type="text" placeholder="Username..." required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-row w3-section">
+                        <div class="w3-rest">
+                            <label class="w3-col s3">Address</label>
+                            <div class="w3-col s9">
+                                <input class="w3-input w3-border" name="address" type="text" placeholder="Address...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-row w3-section">
+                        <div class="w3-rest">
+                            <label class="w3-col s3">Course</label>
+                            <div class="w3-col s9">
+                                <input class="w3-input w3-border" name="course" type="text" placeholder="Course..." required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-row w3-section">
+                        <div class="w3-rest">
+                            <label class="w3-col s3">User Image</label>
+                            <div class="w3-col s9">
+                                <input class="w3-input w3-border" name="image" type="file">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-row w3-section">
+                        <div class="w3-rest">
+                            <label class="w3-col s3">Password:</label>
+                            <div class="w3-col s9">
+                                <input class="w3-input w3-border" name="password" type="password" placeholder="Password..." required>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" type="submit">Register Now</button>
+                    <p>Already a Member? <a href="/" style="color: #1876f2;">Log-in</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
