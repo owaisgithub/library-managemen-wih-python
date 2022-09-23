@@ -1,0 +1,14 @@
+{% extends 'admin_panel/main.html' %}
+
+{% block body %}
+
+<form method="post" class="w3-center">
+    {% csrf_token %}
+    <div class="w3-card-4 w3-light-gray w3-text-blue w3-padding w3-center" style="width: 60%;margin-left: 200px;">
+            
+             
+       <input type="submit" value="Yes" class="w3-button w3-red">
+    </div>
+</form>
+    
+{% endblock %}

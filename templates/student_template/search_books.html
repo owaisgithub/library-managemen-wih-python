@@ -1,0 +1,24 @@
+{% extends 'student_template/main.html' %}
+
+{% block body %}
+<div class="w3-container">
+	<h1 class="w3-center" style="margin-top:50px;">Searched Books {{ query }}...</h1>
+{% if books %}
+<div class="w3-row-padding">
+	{% for book in books %}
+	<div class="w3-col m3">
+		<div class="w3-card-4 w3-padding-16">
+		    <img src="{{ book.image.url }}" alt="Alps" width="300" height="320">
+		    <div class="w3-container w3-center">
+		      <h5>{{ book.title }}</h5>
+		        <p>Author: {{ book.author }} | Edition: {{ book.edition }} | Rack No: {{ book.rack_no }}</p>
+		    </div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% else %}
+<p>There are no books are avialable </p>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'admin_panel/main.html' %}
+
+{% block body %}
+<div class="w3-container w3-padding-16">
+  {% for msg in messages %}
+  <h3 class="w3-center w3-text-teal">{{ msg }}</h3>
+  {% endfor %}
+  <form action="/{{ book.id }}/issue-book/" method="post">
+    {% csrf_token %}
+    <label class="w3-text-teal"><b>Book ID</b></label>
+    <input class="w3-input w3-border w3-grey" type="text" name="book_id" value="{{ book.id }}" readonly>
+    <label class="w3-text-teal"><b>Book Title</b></label>
+    <input class="w3-input w3-border w3-grey" type="text" name="book_id" value="{{ book.title }}" readonly>
+
+    <label class="w3-text-teal"><b>Student ID</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="username" placeholder="Username of Student">
+     <br>
+    <button class="w3-btn w3-blue-grey" type="submit">Issue Now</button>
+  </form>
+</div>
+
+{% endblock %}

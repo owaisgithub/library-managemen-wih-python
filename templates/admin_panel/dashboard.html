@@ -1,0 +1,109 @@
+{% extends 'admin_panel/main.html' %}
+
+{% load static %}
+
+{% block body %}
+<header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+  </header>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter" style="padding-top: 10px;">
+      <div class="w3-container w3-green w3-padding-16">
+        <div class="w3-left"><i class="fa fa-book w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>{{ total_book }}</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Total Books</h4>
+      </div>
+    </div>
+    <div class="w3-quarter" style="padding-top: 10px;">
+      <div class="w3-container w3-indigo w3-padding-16">
+        <div class="w3-left"><i class="fa fa-book w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>{{no_issue_books}}</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Total Issue Book</h4>
+      </div>
+    </div>
+    <div class="w3-quarter" style="padding-top: 10px;">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-book w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>{{no_today_issue}}</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Today Issue Book</h4>
+      </div>
+    </div>
+    <div class="w3-quarter" style="padding-top: 10px;">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>{{no_active_student}}</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Total Active Students</h4>
+      </div>
+    </div>
+      <div class="w3-quarter" style="padding-top: 10px;">
+        <div class="w3-container w3-dark-gray w3-padding-16">
+          <div class="w3-left"><i class="fa fa-user w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>{{no_bl_student}}</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Blacklisted Student</h4>
+        </div>
+      </div>
+      <div class="w3-quarter" style="padding-top: 10px;">
+        <div class="w3-container w3-red w3-padding-16">
+          <div class="w3-left"><i class="fa fa-user-times w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>{{no_cn_student}}</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Cancelled Student</h4>
+        </div>
+      </div>
+    <div class="w3-quarter" style="padding-top: 10px;">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="fa fa-user-plus w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>{{no_req_student}}</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Users Request</h4>
+      </div>
+    </div>
+  </div>
+
+<h1 class="w3-container w3-center">Requested Students List</h1>
+
+<div class="w3-row-padding">
+  {% for student in req_student %}
+    <div class="w3-col m4">
+      <div class="w3-card-4">
+        <div class="w3-container w3-center">
+          {% if student.image %}
+            <img src="{{ student.image.url }}" class="w3-circle" style="width:80%">
+          {% else %}
+            <img src="{% static 'img/user-img.png' %}" class="w3-circle" style="width:80%">
+          {% endif %}
+          <h5>Student Name : {{ student.name }}</h5>
+          <p>Email : {{ student.email }}</p>
+          <p>Mobile No: {{ student.mobile_no }}</p>
+          <p>Course : {{ student.course }}</p>
+          <div class="w3-section">
+            <a href="/{{ student.student_id }}/approved" class="w3-button w3-green">Approved</a>
+            <a href="/{{ student.student_id }}/rejected" class="w3-button w3-red">Rejected</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+  {% endblock %}

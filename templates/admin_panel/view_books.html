@@ -1,0 +1,36 @@
+{% extends 'admin_panel/main.html' %}
+
+{% block body %}
+<div class="w3-bar w3-padding-16">
+  <form action="/show-books/" method="post">
+    {% csrf_token %}
+    <input type="text" name="search" placeholder="Search by title, author and publication name" class="w3-bar-item w3-input w3-light-grey w3-mobile w3-border" style="width:40%; margin-left:250px;">
+    <!-- <input type="submit" name="submit" value="Go" class="w3-bar-item w3-button w3-green"> -->
+    <button class="w3-bar-item w3-button w3-green" type="submit">Search</button>
+  </form>
+</div>
+
+<div class="w3-row-padding">
+{% if books %}
+{% for book in books %}
+<div class="w3-col m3">
+<div class="w3-card-4 w3-padding-16">
+    <img src="{{ book.image.url }}" alt="Alps" width="240" height="260">
+    <div class="w3-container w3-center">
+      <h5>{{ book.title }}</h5>
+      <p>Author: {{ book.author }} | Edition: {{ book.edition }} | Rack No: {{ book.rack_no }}</p>
+      <p>No. of Copy: {{ book.no_of_copy }}</p>
+      <div style="margin-bottom: 10px;">
+      <a href="/{{book.id}}/delete" class="w3-button w3-red">Delete</a>
+      <a href="/{{book.id}}/update-book" class="w3-button w3-blue" >Edit</a>
+      </div>
+      <a href="/{{ book.id }}/issue-book"class="w3-button w3-green">Issue Book</a>
+    </div>
+</div>
+</div>
+{% endfor %}
+{% else %}
+  <h4 align="center">There is no book available at this time</h4>
+{% endif %}
+</div>
+{% endblock %}

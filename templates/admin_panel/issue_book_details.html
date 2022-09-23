@@ -1,0 +1,23 @@
+{% extends 'admin_panel/main.html' %}
+
+{% block body %}
+<h1 class="w3-center">Issue Books Detals</h1>
+<div class="w3-row-padding">
+{% if issue_books %}
+{% for book in books %}
+<div class="w3-col m3">
+<div class="w3-card-4 w3-padding-16">
+    <img src="{{ book.image.url }}" alt="Alps" width="240" height="260">
+    <div class="w3-container w3-center">
+      <h5>{{ book.title }}</h5>
+        <p>Author: {{ book.author }} | Edition: {{ book.edition }} | Rack No: {{ book.rack_no }}</p>
+        <p>Student ID: {{ book.username }}</p>
+    </div>
+</div>
+</div>
+{% endfor %}
+{% else %}
+  <h4 align="center">There are no issue books available at this time</h4>
+{% endif %}
+</div>
+{% endblock %}

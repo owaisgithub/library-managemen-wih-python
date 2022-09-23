@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+
+  <!-- Bootstrap 4 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <script src="{% static 'js/main.js' %}"></script>
+</head>
+<body class="w3-blue">
+    <div class="w3-container">
+        <h1 class="w3-text-white w3-center" style="font-size: 50px;">Library Management System</h1>
+        <p class="w3-text-white w3-center" style="font-size: 16px; padding-bottom: 70px;">Welcome to Library. Please Login Your Username and Password</p>
+        <div class="row">
+            
+            <div class="w3-col s6 w3-center">
+                <div class="w3-card-4 w3-light-gray w3-text-blue w3-padding" style="width: 60%;margin-left: 200px;">
+                    {% for msg in messages %}
+                        <p class="w3-text-red">{{ msg }}</p>
+                    {% endfor %}
+                    <h1>Student Login Form</h1>
+                   <form method="post" action="/student-login/">
+                        {% csrf_token %}
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style="width:50px"><i class="w3-xlarge fa fa-user"></i></div>
+                            <div class="w3-rest">
+                                <input class="w3-input w3-border" name="username" type="text" placeholder="Username" required>
+                            </div>
+                        </div>
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style="width:50px"><i class="w3-xlarge fa fa-key"></i></div>
+                              <div class="w3-rest">
+                                <input class="w3-input w3-border" name="password" type="password" placeholder="Password" required>
+                              </div>
+                        </div>
+                        <button class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" type="submit">Login</button>
+                        <p>Not a Member? <a href="/student-registration" style="color: #1876f2;">Create an account</a></p>
+                   </form>
+                </div>
+            </div>
+            <div class="w3-col s6 w3-center">
+                <div class="w3-card-4 w3-light-gray w3-padding" style="width: 60%; margin-left: 80px;">
+                    <p class="w3-text-red">{{ err }}</p>
+                    <h1>Admin Login Form</h1>
+                    <form method="post" action="/admin-login/">
+                        {% csrf_token %}
+                         <div class="w3-row w3-section">
+                             <div class="w3-col" style="width:50px"><i class="w3-xlarge fa fa-user"></i></div>
+                             <div class="w3-rest">
+                                 <input class="w3-input w3-border" name="username" type="text" placeholder="Username" required>
+                             </div>
+                         </div>
+                         <div class="w3-row w3-section">
+                             <div class="w3-col" style="width:50px"><i class="w3-xlarge fa fa-key"></i></div>
+                               <div class="w3-rest">
+                                 <input class="w3-input w3-border" name="password" type="password" placeholder="Password" required>
+                               </div>
+                         </div>
+                         <button class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

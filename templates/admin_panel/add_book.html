@@ -1,0 +1,50 @@
+{% extends 'admin_panel/main.html' %}
+
+{% block body %}
+
+{% for msg in messages %}
+<div class="w3-panel w3-pale-green w3-display-container">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-large w3-display-topright">&times;</span>
+  <h3 class="w3-center">Book Added Successfully</h3>
+</div> 
+{% endfor %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="w3-card-4 w3-light-gray w3-text-blue w3-padding w3-center" style="width: 60%;margin-left: 200px;">
+        
+        <h1>Book Adding Form</h1>
+       <form method="post" action="#">
+            {% csrf_token %}
+            <table class="w3-table">
+                {% for form in forms %}
+                <tr>
+                  <th>{{ form.label }}</th>
+                  <td>{{ form }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <button class="w3-button w3-red w3-padding" type="reset">Reset</button>
+            <button class="w3-button w3-blue w3-padding" type="submit" style="margin-left: 40px;">Add Book</button>
+            
+             
+       </form>
+    </div>
+    <!-- {{ form.as_p }}
+    <div class="w3-row w3-section w3-margin-16">
+        <div class="w3-rest">
+            <label class="w3-col s3">Title::</label>
+            <div class="w3-col s9">
+                <div class="w3-input w3-border">{{ form.title }}</div>
+            </div>
+        </div>
+    </div> --> 
+ 
+
+<!-- {% if img_obj %}
+    <h3>Successfully Submit data: {{ img_obj.title }}</h3>
+    <img src="{{ img_obj.image.url }}" alt="">
+{% endif %} -->
+
+{% endblock %}

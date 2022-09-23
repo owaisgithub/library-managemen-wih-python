@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("{% static 'img/library-img.jpg' %}");
+  min-height: 80%;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="/" class="w3-bar-item w3-button w3-wide"><img src="{% static 'img/logo.png' %}" width="70" height="35" style="padding-left: 20px;"></a>
+
+    <form action="/search-books/" style="margin-top:8px; margin-left: 20px;">
+      <input type="text" name="search" placeholder="Search by title, author and publication name" class="w3-bar-item w3-input w3-light-grey w3-mobile" style="width:40%;">
+      <!-- <input type="submit" name="submit" value="Go" class="w3-bar-item w3-button w3-green"> -->
+      <button class="w3-bar-item w3-button w3-green" type="submit">Go</button>
+    </form>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="/books" class="w3-bar-item w3-button">Books</a>
+      <a href="#" class="w3-bar-item w3-button">Notices</a>
+      {% if user.is_authenticated %}
+        <div class="w3-dropdown-hover">
+          <button class="w3-button w3-margin-right">{{ user.username }} <i class="fa fa-caret-down"></i></button>
+          <div class="w3-dropdown-content w3-bar-block w3-card-4">
+            <a href="/view-profile" class="w3-bar-item w3-button">View Profile</a>
+            <a href="/student-logout" class="w3-bar-item w3-button">Logout</a>
+          </div>
+        </div>
+      {% else %}
+        <a href="/student-registration" class="w3-bar-item w3-button">Sign Up</a>
+        <a href="/student-login" class="w3-bar-item w3-button">Log In</a>
+        <a href="/admin-login" class="w3-bar-item w3-button">Admin Login</a>
+      {% endif %}
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+
+
+<!-- About Section -->
+{% block body %}
+{% endblock %}
+  
+
+
+ 
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+
+</body>
+</html>

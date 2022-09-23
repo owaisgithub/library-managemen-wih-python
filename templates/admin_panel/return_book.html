@@ -1,0 +1,47 @@
+{% extends 'admin_panel/main.html' %}
+
+{% block body %}
+<div class="w3-container w3-padding-16">
+  <h2>Return Book</h2>
+  {% for msg in messages %}
+  <h3 class="w3-center w3-text-teal">{{ msg }}</h3>
+  {% endfor %}
+
+  {% if books %}
+
+  <form action="/return-book/" method="post">
+    {% csrf_token %}
+    <label class="w3-text-teal"><b>Student ID</b></label>
+    <input class="w3-input w3-border w3-grey" type="text" name="username" value="{{ username }}" readonly>
+     <br>
+    <button class="w3-btn w3-blue-grey" type="submit">Submit</button>
+  </form>
+
+  <div class="w3-row-padding w3-margin-top">
+    {% for book in books %}
+    <div class="w3-col m3">
+      <div class="w3-card-4 w3-padding-16">
+          <img src="{{ book.image.url }}" alt="Alps" width="220" height="260">
+          <div class="w3-container w3-center">
+            <h5>{{ book.title }}</h5>
+              <p>Author: {{ book.author }} | Edition: {{ book.edition }} | Rack No: {{ book.rack_no }}</p>
+              <p><b>Issue Date : {{ book.issue_date }} <br> Return Date : {{ book.return_date }}</b></p>
+              <a href="/{{ book.id }}/returned" class="w3-button w3-blue w3-center">Return</a>
+          </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <form action="/return-book/" method="post">
+    {% csrf_token %}
+    <label class="w3-text-teal"><b>Student ID</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="username" placeholder="Username of Student">
+     <br>
+    <button class="w3-btn w3-blue-grey" type="submit">Submit</button>
+  </form>
+  {% endif %}
+</div>
+
+{% endblock %}
